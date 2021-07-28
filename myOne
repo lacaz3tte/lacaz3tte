@@ -1,0 +1,57 @@
+using System;
+
+namespace Array_Sort
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите количество элементов массива");
+            sbyte arrayLength = sbyte.Parse(Console.ReadLine());
+            double[] array = new double[arrayLength];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine("Введите {0} элемент массива", i);
+                array[i] = double.Parse(Console.ReadLine());
+            }
+
+            double [] newArray = new double[arrayLength];
+
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                double value = array[0];
+                sbyte point = 0;
+                
+                 for (int k = 0; k < array.Length; k++)
+                 {
+                        if (value>array[k])
+                        {
+                            value = array[k];
+                            point = (sbyte)k;
+                        }
+                 }
+                newArray[i] = value;
+                double [] cutedArray = new double[array.Length-1];
+                for (int l = 0; l < point; l++)
+                {
+                    cutedArray[l] = array[l];
+                }
+                for (int n = point; n < cutedArray.Length; n++)
+                {
+                    cutedArray[n] = array[n + 1];
+                }
+                array = cutedArray;
+
+            }
+            Console.WriteLine(new string('-', 15));
+            Console.WriteLine("Отсортированный массив");
+            foreach (double item in newArray)
+            {
+                Console.Write(item+" ");
+            }
+
+
+        }
+    }
+}
